@@ -45,3 +45,6 @@ public/uploads
 
 # Package tarballs (npm pack / yarn pack)
 *.tgz
+
+# Package tarballs (npm pack / yarn pack)
+*.tgz
