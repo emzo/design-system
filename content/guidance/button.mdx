@@ -1,0 +1,39 @@
+# Button
+
+Design intent for the Button component. This page answers *why* and *when* — the
+live component, its variants and its API live under **Components › Button**.
+
+## Purpose
+
+Buttons trigger an action or a change of state. They are the most direct way for
+a user to tell the interface to do something, so their visual weight should match
+the importance of the action behind them.
+
+<WhenToUse>
+  Use a button for a clear, discrete action the user takes on the current screen —
+  submitting a form, confirming a choice, opening a dialog.
+</WhenToUse>
+
+<WhenNotToUse>
+  Don't use a button to navigate between pages — that's a link. If the primary
+  result is "go somewhere else", use a link so it behaves correctly with the
+  browser.
+</WhenNotToUse>
+
+## Hierarchy
+
+Every screen should have at most one primary button. Use secondary and tertiary
+buttons for lower-priority actions so the primary action stays unmistakable.
+
+<DoDont>
+  <Do>Pair one primary button with secondary or tertiary supporting actions.</Do>
+  <Dont>Place two primary buttons side by side and remove the hierarchy.</Dont>
+</DoDont>
+
+## Behaviour
+
+<Note title="Loading and disabled states">
+  While an action is in progress, show a loading state rather than removing the
+  button, so the layout doesn't shift. Only disable a button when the action is
+  genuinely unavailable.
+</Note>

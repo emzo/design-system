@@ -1,0 +1,78 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Tokens up to date
+        run: |
+          yarn tokens:build
+          git diff --exit-code -- src/theme/tokens.ts styles/tokens.css \
+            || (echo "::error::Design tokens are stale. Run 'yarn tokens:build' and commit the result." && exit 1)
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Format check
+        run: yarn format:check
+
+      - name: Typecheck
+        run: yarn typecheck
+
+      - name: Build library
+        run: yarn build:lib
+
+      - name: Validate package (publint + are-the-types-wrong)
+        run: yarn check:package
+
+  a11y:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Install Playwright (chromium)
+        run: npx playwright install --with-deps chromium
+
+      - name: Build Storybook
+        run: yarn build-storybook --quiet
+
+      - name: Run accessibility tests
+        run: |
+          npx concurrently -k -s first -n "SB,A11Y" \
+            "npx http-server storybook-static --port 6006 --silent" \
+            "npx wait-on tcp:127.0.0.1:6006 && yarn test-storybook"

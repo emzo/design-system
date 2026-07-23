@@ -1,0 +1,12 @@
+# Normalise line endings to LF everywhere so Prettier's format check is stable
+# regardless of contributor OS (Windows Git otherwise checks out CRLF).
+* text=auto eol=lf
+
+# Binary assets — never normalise
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.woff  binary
+*.woff2 binary

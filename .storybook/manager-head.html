@@ -1,0 +1,12 @@
+<script>
+  (function () {
+    var nativeFocus = HTMLElement.prototype.focus;
+    HTMLElement.prototype.focus = function () {
+      try {
+        return nativeFocus.apply(this, arguments);
+      } catch (e) {
+        /* swallow Storybook's cross-window focus-visible "Illegal invocation" */
+      }
+    };
+  })();
+</script>

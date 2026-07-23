@@ -1,0 +1,35 @@
+version: 2
+updates:
+  # JavaScript dependencies (package.json). Works with the yarn lockfile.
+  - package-ecosystem: npm
+    directory: '/'
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    groups:
+      # Roll all non-major bumps into a single PR to keep the noise down.
+      minor-and-patch:
+        update-types:
+          - minor
+          - patch
+    # Never auto-bump the MUI/Emotion/React majors — they are shared peers with the
+    # consuming app and must be upgraded in lockstep (see README upgrade notes).
+    ignore:
+      - dependency-name: '@mui/*'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'react'
+        update-types: ['version-update:semver-major']
+      - dependency-name: 'react-dom'
+        update-types: ['version-update:semver-major']
+      - dependency-name: '@emotion/*'
+        update-types: ['version-update:semver-major']
+
+  # Keep the GitHub Actions used in the workflows up to date.
+  - package-ecosystem: github-actions
+    directory: '/'
+    schedule:
+      interval: weekly
+    groups:
+      github-actions:
+        patterns:
+          - '*'

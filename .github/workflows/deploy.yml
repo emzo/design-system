@@ -1,0 +1,45 @@
+name: Deploy Storybook to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+# Allow the workflow to push the built site to the gh-pages branch.
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+
+      - name: Install dependencies
+        # Plain `yarn install` works on both Yarn Classic (1.x) and Berry (3/4).
+        # For stricter CI, use `yarn install --frozen-lockfile` (Classic) or
+        # `yarn install --immutable` (Berry) once yarn.lock is committed.
+        run: yarn install
+
+      - name: Build Storybook
+        run: yarn build-storybook
+
+      - name: Deploy to gh-pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: storybook-static
+          branch: gh-pages
+          # Publish production to the branch root, but never wipe the PR previews.
+          clean-exclude: pr-preview
+          force: false

@@ -1,0 +1,128 @@
+{
+  "name": "@emzo/design-system",
+  "version": "0.1.0",
+  "description": "Design system components (built on Material UI v5), documented in Storybook.",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emzo/design-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/emzo/design-system/issues"
+  },
+  "homepage": "https://github.com/emzo/design-system#readme",
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "styles"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "_comment_typesVersions": "Back-compat for consumers on TypeScript < 5.0 (e.g. 4.6) using classic 'node' resolution, which ignores the exports map for types. Modern TS uses exports instead and ignores this. The main entry resolves via the top-level 'types' field; only subpaths need mapping.",
+  "typesVersions": {
+    "*": {
+      "Button": [
+        "dist/Button.d.ts"
+      ],
+      "theme": [
+        "dist/theme.d.ts"
+      ]
+    }
+  },
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./Button": {
+      "import": {
+        "types": "./dist/Button.d.ts",
+        "default": "./dist/Button.js"
+      },
+      "require": {
+        "types": "./dist/Button.d.cts",
+        "default": "./dist/Button.cjs"
+      }
+    },
+    "./theme": {
+      "import": {
+        "types": "./dist/theme.d.ts",
+        "default": "./dist/theme.js"
+      },
+      "require": {
+        "types": "./dist/theme.d.cts",
+        "default": "./dist/theme.cjs"
+      }
+    },
+    "./tokens.css": "./styles/tokens.css",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "restricted"
+  },
+  "scripts": {
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "build:lib": "tsup",
+    "prepublishOnly": "tsup",
+    "tokens:build": "node scripts/build-tokens.mjs",
+    "test-storybook": "test-storybook",
+    "tina:dev": "tinacms dev -c \"storybook dev -p 6006\"",
+    "tina:build": "tinacms build",
+    "lint": "oxlint",
+    "typecheck": "tsc --noEmit -p tsconfig.app.json",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check:package": "publint --pack npm && attw --pack --exclude-entrypoints ./tokens.css",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "yarn build:lib && changeset publish"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@mui/material": "^5",
+    "react": ">=18",
+    "react-dom": ">=18"
+  },
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.18.5",
+    "@changesets/cli": "^2.31.1",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^5.18.0",
+    "@storybook/addon-a11y": "^10.5.3",
+    "@storybook/addon-docs": "^10.5.3",
+    "@storybook/react-vite": "^10.5.3",
+    "@storybook/test-runner": "^0.24.4",
+    "@tinacms/cli": "^2.5.6",
+    "@types/node": "^24.13.2",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.3",
+    "axe-playwright": "^2.2.2",
+    "oxlint": "^1.71.0",
+    "prettier": "^3.9.6",
+    "publint": "^0.3.22",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "storybook": "^10.5.3",
+    "style-dictionary": "^5.5.0",
+    "tinacms": "^3.11.0",
+    "tsup": "^8.5.0",
+    "typescript": "^5.6.0",
+    "vite": "^8.1.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

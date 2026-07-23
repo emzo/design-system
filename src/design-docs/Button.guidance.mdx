@@ -1,0 +1,14 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import * as blocks from './blocks/Guidance';
+import Content from '../../content/guidance/button.mdx';
+
+{/*
+  Developer-owned wrapper. It places the page in the Storybook sidebar (<Meta />)
+  and injects the guidance components, then renders the CMS-owned content from
+  content/guidance/button.mdx. Designers never edit this file — they edit the
+  content file through TinaCMS, which needs no imports or <Meta>.
+*/}
+
+<Meta title="Design Guidance/Button" />
+
+<Content components={blocks} />

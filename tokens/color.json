@@ -1,0 +1,9 @@
+{
+  "color": {
+    "primary": { "main": { "value": "#1565c0" } },
+    "secondary": { "main": { "value": "#6d4c9f" } },
+    "success": { "main": { "value": "#2e7d32" }, "bg": { "value": "#edf7ed" } },
+    "error": { "main": { "value": "#c62828" }, "bg": { "value": "#fdecea" } },
+    "neutral": { "border": { "value": "#cfd8dc" }, "bg": { "value": "#f5f7f8" } }
+  }
+}

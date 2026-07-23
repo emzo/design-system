@@ -1,0 +1,10 @@
+{
+  "space": {
+    "xs": { "value": 4 },
+    "sm": { "value": 8 },
+    "md": { "value": 16 },
+    "lg": { "value": 24 },
+    "xl": { "value": 32 }
+  },
+  "radius": { "sm": { "value": 6 }, "md": { "value": 8 } }
+}

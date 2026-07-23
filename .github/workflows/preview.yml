@@ -1,0 +1,48 @@
+name: PR Preview
+
+on:
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - closed
+
+# contents: write  -> push the preview into the gh-pages branch
+# pull-requests: write -> post/update the preview link comment
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency: preview-${{ github.ref }}
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        if: github.event.action != 'closed'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: yarn
+
+      - name: Install dependencies
+        if: github.event.action != 'closed'
+        # Plain `yarn install` works on both Yarn Classic (1.x) and Berry (3/4).
+        run: yarn install
+
+      - name: Build Storybook
+        if: github.event.action != 'closed'
+        run: yarn build-storybook
+
+      - name: Deploy / update / remove PR preview
+        uses: rossjrw/pr-preview-action@v1
+        with:
+          source-dir: ./storybook-static/
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+          action: auto
