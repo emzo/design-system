@@ -16,6 +16,11 @@ const preview: Preview = {
       // 'error' fails the accessibility test-runner on any violation.
       test: 'error',
     },
+    options: {
+      storySort: {
+        order: ['Foundations', 'Design Guidance', ['Introduction', '*'], 'Components'],
+      },
+    },
   },
   // Toolbar switcher for previewing components in each theme.
   globalTypes: {
