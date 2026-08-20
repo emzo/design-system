@@ -1,0 +1,7 @@
+import{n as e}from"./rolldown-runtime-C0FnF6B9.js";import{j as t}from"./iframe-B4IWGh3v.js";import{i as n,r}from"./react-qN2cStNd.js";import{a as i,o as a}from"./blocks-DZ3z6Bxa.js";import{n as o,t as s}from"./Guidance-D--XTOHS.js";function c(e){let t={em:`em`,h1:`h1`,p:`p`,strong:`strong`,...n(),...e.components};return(0,u.jsxs)(u.Fragment,{children:[(0,u.jsx)(t.h1,{id:`design-system`,children:`Design System`}),`
+`,(0,u.jsxs)(t.p,{children:[`Welcome to the design system. This Storybook is the single source of truth for
+both `,(0,u.jsx)(t.strong,{children:`design intent`}),` and `,(0,u.jsx)(t.strong,{children:`implementation`}),`.`]}),`
+`,(0,u.jsxs)(t.p,{children:[`Design Guidance pages explain `,(0,u.jsx)(t.em,{children:`why`}),` components exist and `,(0,u.jsx)(t.em,{children:`when`}),` to use them, and
+are edited by the UI/UX team through the CMS. The Components section shows the
+`,(0,u.jsx)(t.em,{children:`live`}),` implementation, generated from the code.`]})]})}function l(e={}){let{wrapper:t}={...n(),...e.components};return t?(0,u.jsx)(t,{...e,children:(0,u.jsx)(c,{...e})}):c(e)}var u;function d(){return(d=e((()=>{u=t(),r()})))()}function f(e){return(0,m.jsxs)(m.Fragment,{children:[(0,m.jsx)(i,{title:`Design Guidance/Introduction`}),`
+`,(0,m.jsx)(l,{components:s})]})}function p(e={}){let{wrapper:t}={...n(),...e.components};return t?(0,m.jsx)(t,{...e,children:(0,m.jsx)(f,{...e})}):f(e)}var m;function h(){return(h=e((()=>{m=t(),r(),a(),o(),d()})))()}h();export{p as default};
