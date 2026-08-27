@@ -39,7 +39,7 @@ jobs:
         run: yarn install
 
       - name: Create Release PR or publish
-        uses: changesets/action@v1
+        uses: changesets/action@v2
         with:
           version: yarn version-packages
           publish: yarn release
